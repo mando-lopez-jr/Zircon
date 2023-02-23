@@ -1,2 +1,3 @@
 # Zircon
-A package manager written in python
+This is a work in progress package manager for linux. 
+I hope to eventually integrate it into a linux distro.
