@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+
+'''
+If you'd like to test the current capabilities
+Create the following folders:
+
+~/dev/sample_repo       
+This is a sample repository
+Fill it with "programs" to be "installed"
+
+~/dev/samble_bin
+This is a sample bin directory
+You can leave it empty
+'''
+
+import os #Imported for sh commands
+import sys #Imported for command line arguements
+
+def main():
+    lenargv = len(sys.argv)
+
+    match sys.argv[1]:
+        case 'install':
+            install(lenargv)
+        case '-i':
+            install(lenargv)
+        case 'remove':
+            remove(lenargv)
+        case '-r':
+            remove(lenargv)
+        case 'help':
+            help()
+        case '-h':
+            help()
+        case other:
+            print("Error: Invalid Input")
+    
+#The install function. It takes an integer called length and uses it to index sys.argv
+def install(length): 
+    for i in range(2, length):
+        print("copying " + sys.argv[i]) #prints what it's installing. Mostly a sanity check
+        os.system("cp ~/dev/sample_repo/" + sys.argv[i] + " ~/dev/sample_bin") #actually copies the file
+
+#Prints a list of Zircon's capabilities. Some functionality is yet to be implemented
+def help():
+    print("Zircon is a package manager.\nIt will install, remove, and update software.")
+    print("To use, type:")
+    print("    install or -i   [software]     to install software")
+    print("    remove or -r    [software]     to remove software")
+    print("    update or -ud   [software]     to update the list of available software")
+    print("    upgrade or -ug  [software]     to upgrade outdated software")
+    print("    help or -h                     to recieve a list of zircon's functions")
+
+#The remove function. It takes an integer called length and uses it to index sys.argv
+def remove(length):
+    for i in range(2, length):
+        print("removing " + sys.argv[i]) #prints what it's removing. Mostly a sanity check
+        os.system("rm ~/dev/sample_bin/" + sys.argv[i]) #actually removes the file
+
+main()
